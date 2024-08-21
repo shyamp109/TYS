@@ -1,4 +1,4 @@
-package com.tys
+package app.com.truecoach
 
 import android.app.Application
 import com.facebook.react.PackageList
