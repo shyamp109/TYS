@@ -50,9 +50,7 @@ export default class Goals extends Component {
         });
         console.log(res.data);
       })
-      .catch(err => {
-        Alert.alert('Error occured loading goals.');
-      });
+      .catch(err => {});
   }
   handleBackButtonClick = () => {
     // const backAction = NavigationActions.back();
@@ -122,7 +120,6 @@ export default class Goals extends Component {
       })
       .catch(err => {
         console.log(err);
-        Alert.alert('An error occured', JSON.stringify(err));
       });
   };
 

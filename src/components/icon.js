@@ -10,7 +10,11 @@ export default class Icon extends Component {
         style={{
           height: this.props.size ? this.props.size : 20,
           width: this.props.size ? this.props.size : 20,
-          tintColor: this.props.focused ? '#2D2927' : 'lightgray',
+          tintColor: this.props.chnageIconColor
+            ? 'white'
+            : this.props.focused
+            ? '#2D2927'
+            : 'lightgray',
         }}
         source={eval(
           icons[Object.keys(icons)?.find(cv => cv === 'ic_' + this.props.icon)],

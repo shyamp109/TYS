@@ -14,7 +14,11 @@ export default class PracticesHeader extends Component {
           borderBottomRightRadius={20}>
           <View style={style.inner}>
             <View style={style.container}>
-              <IconButton icon="arrow_left" onPress={this.props.onPress} />
+              <IconButton
+                chnageIconColor={true}
+                icon="arrow_left"
+                onPress={this.props.onPress}
+              />
               <Text style={style.title}>{this.props.title}</Text>
             </View>
           </View>

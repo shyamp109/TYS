@@ -20,7 +20,7 @@ const EnterPassword = props => {
   const [loading, setLoading] = React.useState(false);
 
   const onSubmit = () => {
-    const email = props.navigation.getParam('email');
+    const email = props.route.params.email;
     axiosInstance
       .post('user/change-reset-password', {
         email,

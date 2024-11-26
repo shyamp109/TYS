@@ -93,7 +93,7 @@ class Trainings extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     return nextProps.items === prevState.items
       ? {}
-      : {items: nextProps.items.filter(value => value.active > 0)};
+      : {items: nextProps?.items?.filter(value => value.active > 0)};
   }
   renderItem({item, index}) {
     // console.log('item: ', index, '===', item);

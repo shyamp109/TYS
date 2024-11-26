@@ -66,6 +66,7 @@ export default class SplashScreen extends Component {
   }
   load = async () => {
     const user = await AsyncStorage.getItem('user');
+    console.log('user: ------firstTime', user);
     if (user) {
       setTimeout(() => {
         Animated.timing(this.scaleValue, {

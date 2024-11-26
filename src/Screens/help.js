@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   View,
+  Text,
 } from 'react-native';
 // import {NavigationActions} from 'react-navigation';
 import SimpleHeader from '../components/simple_header';
@@ -47,19 +48,18 @@ class Help extends Component {
   render() {
     const {navigate} = this.props.navigation;
     //navigate('ScreenName') - forward
+    console.log('this.state.html', this.state.html);
     //this.handleBackButtonClick - back
     return (
       <SafeAreaView>
         <ScrollView>
           <SimpleHeader onPress={this.handleBackButtonClick} title="Help" />
           <View style={{paddingHorizontal: 15, minHeight: 100}}>
-            {this.state.html && (
-              <AutoHeightWebView
-                style={{width: Dimensions.get('window').width - 30}}
-                originWhitelist={['*']}
-                source={{html: htmlStart + this.state.html + htmlEnd}}
-              />
-            )}
+            <AutoHeightWebView
+              style={{width: Dimensions.get('window').width - 30}}
+              originWhitelist={['*']}
+              source={{html: htmlStart + this.state.html + htmlEnd}}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>

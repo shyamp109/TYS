@@ -197,11 +197,14 @@ class Account extends Component {
                     {user.first_name} {user.last_name}
                   </Text>
                 </View>
-                <View style={style.section_row}>
-                  <Icon icon="users_gray" focused={true} />
-                  <Text style={style.label}>Team:</Text>
-                  <Text style={style.info}>{user.team_name}</Text>
-                </View>
+                {user.team_name != undefined && (
+                  <View style={style.section_row}>
+                    <Icon icon="users_gray" focused={true} />
+                    <Text style={style.label}>Team:</Text>
+
+                    <Text style={style.info}>{user.team_name}</Text>
+                  </View>
+                )}
               </View>
 
               {/* <Text style={style.section_title}>Basic information</Text>

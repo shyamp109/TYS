@@ -22,7 +22,7 @@ const BottomTabNavigator = () => (
 
         if (route.name === 'Home') {
           iconName = focused ? 'home_orange' : 'home_gray';
-        } else if (route.name === 'Team') {
+        } else if (route.name === 'News') {
           iconName = focused ? 'users_orange' : 'users_gray';
         } else if (route.name === 'Goals') {
           iconName = focused ? 'goals_orange' : 'goals_gray';
@@ -32,6 +32,7 @@ const BottomTabNavigator = () => (
 
         return <Icon icon={iconName} focused={focused} />;
       },
+      unmountOnBlur: true,
     })}
     tabBarOptions={{
       activeTintColor: '#2D2927',
@@ -39,7 +40,7 @@ const BottomTabNavigator = () => (
       keyboardHidesTabBar: true,
     }}>
     <Tab.Screen name="Home" component={HomeStackNavigator} />
-    <Tab.Screen name="Team" component={Team} />
+    <Tab.Screen name="News" component={Team} />
     <Tab.Screen name="Goals" component={Goals} />
     <Tab.Screen name="Account" component={Account} />
   </Tab.Navigator>

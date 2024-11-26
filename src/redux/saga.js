@@ -717,14 +717,15 @@ export function* changePassword(payload) {
 }
 
 export function* readItems(payload) {
+  const {type, training_id, session_id, subsession_id} = payload.payload;
   try {
-    const {type, training_id, session_id, subsession_id} = payload.payload;
     if (type === 'training') {
       yield put({
         type: SET_TRAININGS_LOADING,
         payload: true,
       });
       response = yield axiosInstance.get('load/training/all/true/mobile');
+      console.log('response: ', response.data);
 
       yield put({
         type: SET_TRAININGS,
@@ -838,17 +839,17 @@ export function* readItems(payload) {
       });
     }
   } catch (error) {
-    if ((type = 'training')) {
+    if (type === 'training') {
       yield put({
         type: SET_TRAININGS_MESSAGE,
         payload: 'There seems to be an error. Failed to load.',
       });
-    } else if ((type = 'session')) {
+    } else if (type === 'session') {
       yield put({
         type: SET_SESSIONS_MESSAGE,
         payload: 'There seems to be an error. Failed to load.',
       });
-    } else if ((type = 'subsession')) {
+    } else if (type === 'subsession') {
       yield put({
         type: SET_SUBSESSIONS_MESSAGE,
         payload: 'There seems to be an error. Failed to load.',
@@ -954,6 +955,7 @@ export function* readAllSubsessions(payload) {
 
   try {
     const response = yield axiosInstance.get('load/subsession/all');
+    console.log('response: ', response.data);
 
     if (response.data && response.data.length > 0) {
       yield put({
@@ -1022,6 +1024,7 @@ export function* readTeamNews(payload) {
     // yield AsyncStorage.setItem('news' + userId, JSON.stringify(newNews))
 
     const response = yield axiosInstance.post('mobile/news', {id: 0});
+    console.log('response: ', response.data);
 
     yield put({
       type: SET_TEAM_NEWS,

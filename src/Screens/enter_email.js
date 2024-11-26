@@ -18,18 +18,21 @@ const EnterEmail = props => {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
-  const onSubmit = () => {
-    axiosInstance
+  const onSubmit = async () => {
+    console.log('hellop');
+    await axiosInstance
       .post('user/reset-password-request', {
         email,
       })
       .then(data => {
+        console.log('data: ', data);
         setLoading(false);
         props.navigation.navigate('EnterCode', {
           email,
         });
       })
       .catch(err => {
+        console.log('err: ', err);
         setErrorMessage(err.response.data.message);
         setLoading(false);
       });

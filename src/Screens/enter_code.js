@@ -14,12 +14,13 @@ import axiosInstance from '../api';
 // import Icon from '../components/icon';
 
 const EnterCode = props => {
+  console.log('props: ', props.route.params.email);
   const [code, setCode] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
   const onSubmit = () => {
-    const email = props.navigation.getParam('email');
+    const email = props.route.params.email;
     axiosInstance
       .post('user/validate-reset-password', {
         email,

@@ -58,13 +58,11 @@ class About extends Component {
         <ScrollView>
           <SimpleHeader onPress={this.handleBackButtonClick} title="About" />
           <View style={{paddingHorizontal: 15, minHeight: 100}}>
-            {this.state.html && (
-              <AutoHeightWebView
-                style={{width: Dimensions.get('window').width - 30}}
-                originWhitelist={['*']}
-                source={{html: htmlStart + this.state.html + htmlEnd}}
-              />
-            )}
+            <AutoHeightWebView
+              style={{width: Dimensions.get('window').width - 30}}
+              originWhitelist={['*']}
+              source={{html: htmlStart + this.state.html + htmlEnd}}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>

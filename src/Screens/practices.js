@@ -138,28 +138,19 @@ class Practices extends Component {
     );
   };
   renderButtons = () => {
-    let a = {
-      drill_manual: '/storage/drill_manual/36.pdf',
-      session_id: 24,
-      subsession_id: 36,
-      subsession_name: 'Dynamic Flex',
-      subsession_picture: '/storage/media_gallery/pictures/1.jpeg',
-      training_id: 94,
-      training_name: 'Elementary School Program Design (Grades 1-5)',
-    };
     return (
       <View style={style.buttons_container}>
         <TouchableOpacity style={style.button} onPress={this.backToSession}>
           <Text style={style.button_text}>Back to Session</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={
             this.props.route.params.drill_manual &&
             this.props.route.params.drill_manual !== 'null'
               ? style.button_disabled
               : style.button_disabled
           }
-          disabled={this.props.route.params.drill_manual && true}
+          disabled={this.props.route.params.drill_manual ? true : false}
           onPress={this._handleOpenURL}>
           <Text style={style.button_text}>Drill Manuals</Text>
         </TouchableOpacity>
@@ -172,7 +163,7 @@ class Practices extends Component {
           disabled={this.props.route.params.court_diagram ? false : true}
           onPress={() => this.props.navigation.navigate('CourtDiagram')}>
           <Text style={style.button_text}>Court Diagram</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   };
@@ -188,12 +179,10 @@ class Practices extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => {
-            console.log(
-              'baseURL + item.videoPlayer,',
-              baseURL + item.videoPlayer,
-            );
             this.props.navigation.navigate('Video', {
-              video: baseURL + item.videoPlayer,
+              video:
+                baseURL +
+                item.practice.video?.slice(1, item?.practice?.video?.length),
             });
           }}
           style={style.item_container}>
@@ -215,7 +204,10 @@ class Practices extends Component {
           </ImageBackground>
         </TouchableOpacity>
 
-        {this.renderPlayButton(baseURL + item.videoPlayer)}
+        {this.renderPlayButton(
+          baseURL +
+            item.practice.video?.slice(1, item?.practice?.video?.length),
+        )}
       </View>
     );
   };
@@ -246,8 +238,12 @@ class Practices extends Component {
       outputRange: [header_max_height, header_min_height],
       extrapolate: 'clamp',
     });
+
+    console.log('this.state.items: practice ', this.state.items);
+
     return (
       <SafeAreaView style={style.container}>
+        {/* <Text>gello</Text> */}
         <FlatList
           ListHeaderComponent={
             <React.Fragment>
@@ -281,6 +277,23 @@ class Practices extends Component {
               : null
           }
           keyExtractor={(item, index) => JSON.stringify(index)}
+          ListEmptyComponent={
+            !this.props.practicesLoading &&
+            !this.props.practicesMessage && (
+              <View>
+                <Text
+                  style={{
+                    color: '#2D2927',
+                    textAlign: 'center',
+                    fontWeight: 700,
+                    fontSize: 16,
+                    marginTop: 20,
+                  }}>
+                  No practices available
+                </Text>
+              </View>
+            )
+          }
           onScroll={Animated.event([
             {
               nativeEvent: {contentOffset: {y: this.scrollYAnimatedValue}},
@@ -415,3 +428,70 @@ function mapDispatchToProps(dispatch, payload) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Practices);
+
+let a = [
+  {
+    active: 0,
+    created_at: null,
+    creator_id: 547,
+    id: 6706,
+    name: 'P1',
+    picture: 'storage/practice_picture/273',
+    practice: {
+      created_at: '2024-08-22 06:48:22',
+      creator_id: 2,
+      description: 'P1-desc',
+      id: 273,
+      name: 'P1',
+      picture: 'storage/practice_picture/273',
+      updated_at: '2024-08-22 08:46:35',
+      video: 'storage/media_gallery/videos/1MB.mp4',
+      videoPlayer: 'storage/practice_video/273.mp4',
+      video_name: 'Video',
+    },
+    practice_id: 273,
+    practice_picture: null,
+    practice_video: '/storage/practice_video/273.mp4',
+    public: 0,
+    publisher_id: null,
+    session_id: 56,
+    subsession_id: 48,
+    training_id: 140,
+    updated_at: null,
+    video: '/storage/practice_video/273.mp4',
+    videoPlayer: '/storage/practice_video/273.mp4',
+    video_size: 2.72,
+  },
+  {
+    active: 0,
+    created_at: null,
+    creator_id: 547,
+    id: 6707,
+    name: 'Video 1',
+    picture: 'storage/practice_picture/270',
+    practice: {
+      created_at: '2024-08-20 13:14:03',
+      creator_id: 2,
+      description: 'Video 1',
+      id: 270,
+      name: 'Video 1',
+      picture: 'storage/practice_picture/270',
+      updated_at: '2024-08-20 13:14:03',
+      video: 'storage/media_gallery/videos/newVideo.mp4',
+      videoPlayer: 'storage/practice_video/270.mp4',
+      video_name: 'Video',
+    },
+    practice_id: 270,
+    practice_picture: null,
+    practice_video: '/storage/practice_video/270.mp4',
+    public: 0,
+    publisher_id: null,
+    session_id: 56,
+    subsession_id: 48,
+    training_id: 140,
+    updated_at: null,
+    video: '/storage/practice_video/270.mp4',
+    videoPlayer: '/storage/practice_video/270.mp4',
+    video_size: 0,
+  },
+];

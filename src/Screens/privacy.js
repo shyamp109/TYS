@@ -34,7 +34,9 @@ export default class Privacy extends Component {
     return (
       <SafeAreaView style={{flex: 1}}>
         <SimpleHeader onPress={this.handleBackButtonClick} title="Privacy" />
-        <ScrollView style={{marginHorizontal: 10, marginVertical: 10}}>
+        <ScrollView
+          style={{marginHorizontal: 10, marginVertical: 10}}
+          showsVerticalScrollIndicator={false}>
           <Text
             style={{
               marginTop: 10,

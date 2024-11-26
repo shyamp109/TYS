@@ -728,9 +728,8 @@ class DrillLibrary extends Component {
                       style={style.item_container}
                       onPress={() =>
                         navigate('Video', {
-                          video: item.videoPlayer
-                            ? baseURL + item.videoPlayer
-                            : baseURL + item.video,
+                          video:
+                            baseURL + item.video?.slice(1, item?.video?.length),
                         })
                       }>
                       <View style={style.item_icon}>
@@ -768,7 +767,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 5,
     flex: 1,
     borderRadius: 5,
-    color: 'white',
+    color: 'black',
     height: 40,
     fontSize: 18,
   },
